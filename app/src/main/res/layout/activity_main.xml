@@ -5,20 +5,16 @@
     android:layout_height="match_parent"
     tools:context="com.mk.jobs.activities.MainActivity"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/text_view"
+    <ExpandableListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categories"
-        android:textSize="35sp"
-        android:textColor="#000"
-        android:layout_marginStart="@dimen/margin"
-        />
+        android:tag="Doctors">
+
+    </ExpandableListView>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/categories_recycler_view"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
