@@ -1,8 +1,12 @@
 package com.mk.jobs.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.mk.jobs.R;
 import com.mk.jobs.adapters.ExpandableListAdapter;
@@ -27,18 +31,29 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         // get the listview
-        expListView = findViewById(R.id.lvExp);
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
         // preparing list data
         prepareListData();
 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
-
         // setting list adapter
         expListView.setAdapter(listAdapter);
-
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                Intent i = new Intent(getApplicationContext(),ServiceListActivity.class);
+                i.putExtra("child_name",listDataChild.get(
+                        listDataHeader.get(groupPosition)).get(
+                        childPosition));
+                startActivity(i);
+                return false;
+            }
+        });
     }
+
 
     /*
      * Preparing the list data
